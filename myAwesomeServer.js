@@ -8,6 +8,11 @@ const PORT = process.env.PORT || 5001;
 
 //app.use(express.static('public'));
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
 app.use(morgan('dev'));
 
 app.get('/', (req, res, next) => {
