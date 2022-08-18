@@ -73,22 +73,49 @@ app.get('/surfs-app/post-new-fact/:newfact', (req, res, next) => {
         {
             username: 'davi.navarro',
             password: '786989'    
-        }];
-    for (const user of validUsers) {
-        if (user.username === userName && user.password === passWord) {
-            authAccess = true;
-            res.status(200).send({auth: authAccess, data: surfsAppData})
-            return user;
-        } else {
-            res.status(403).send({auth: authAccess});
-            return user;
-            };
         }
+    ];
+    for (const user of validUsers) {
+        if (user['username'] === userName && user['password'] === passWord) {
+            authAccess = true;
+        } else {
+            authAccess = false;
+            };
+    };
+
+    if (authAccess) {
+        res.status(200).send({auth: authAccess, data: surfsAppData});
+    } else {
+        res.status(403).send({auth: authAccess});
+    };
 });
 
-app.post('/surfs-app/post-new-fact/:newfact',(req, res, next) => {
+app.post('/surfs-app/post-new-fact/new-fact-to-post/:newfact',(req, res, next) => {
     let personToAddFact = req.query.personToAddFact;
+    console.log(personToAddFact);
     let newFactToBeAdded = req.query.factToBePosted;
+    console.log(newFactToBeAdded);
+
+    let indexOfPersonToAddFact = surfsAppDatabase.findIndex(obj => {
+        return obj['firstName'] == personToAddFact;
+    });
+
+    if (indexOfPersonToAddFact !== -1) {
+        (surfsAppDatabase[indexOfPersonToAddFact].facts).push({
+            factId: ((surfsAppDatabase[indexOfPersonToAddFact].facts).length + 1),
+            info: newFactToBeAdded
+        });
+        res.send({
+            newFactId: ((surfsAppDatabase[indexOfPersonToAddFact].facts).length + 1),
+            personName: personToAddFact,
+            newFact: newFactToBeAdded
+        });
+        } else {
+            res.status(404).send('Person not found!');
+        };
+});
+
+    /*
     for (obj of surfsAppDatabase) {
         if (personToAddFact === obj.firstName) {
             (obj.facts).push({
@@ -103,8 +130,8 @@ app.post('/surfs-app/post-new-fact/:newfact',(req, res, next) => {
         } else {
             res.status(404).send('Person not found!');
         };
-    };
-});
+    */
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
