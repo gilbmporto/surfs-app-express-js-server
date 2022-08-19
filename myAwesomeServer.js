@@ -78,6 +78,7 @@ app.get('/surfs-app/post-new-fact/:newfact', (req, res, next) => {
     for (const user of validUsers) {
         if (user['username'] === userName && user['password'] === passWord) {
             authAccess = true;
+            break;
         } else {
             authAccess = false;
             };
