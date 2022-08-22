@@ -127,7 +127,7 @@ const surfsAppDatabase = [
             }, 
             {
                 factId: 2,
-                info: "History for gay: I did not say that, what i said was... not in the audio"
+                info: "History for gay: I did not say that, what I said was... not in the audio"
             },
             {
                 factId: 3,
@@ -135,7 +135,7 @@ const surfsAppDatabase = [
             },
             {
                 factId: 4,
-                info: "Curious people's ass: Likes to eat it"
+                info: "Curious people's ass: Enjoys eating it"
             },
             {
                 factId: 5,
@@ -155,7 +155,7 @@ const surfsAppDatabase = [
         id: 5,
         firstName: 'Remo',
         lastName: 'Martins',
-        famousPhrase: "I'll fuck you, and all your family, in the ass.",
+        famousPhrase: "Simply does not give a sh**",
         photoSrc: 'https://lh3.googleusercontent.com/9mKGCaYUeYNA8CSHWfS3mP2jQZKL_wPsELDXOfEdDZTapx3-FE0baNvnkhvBQlu1SbTvCxw19UOGhKqTOMBqsaiEdM4KtrvWATrCBg=s0',
         facts:
         [
